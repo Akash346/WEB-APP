@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Count by Country</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student Count by Country</h1>
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Student Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>USA</td>
+                <td>1200</td>
+            </tr>
+            <tr>
+                <td>India</td>
+                <td>800</td>
+            </tr>
+            <tr>
+                <td>China</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>Germany</td>
+                <td>400</td>
+            </tr>
+            <tr>
+                <td>Brazil</td>
+                <td>300</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        // This script is not needed since we're using hardcoded data.
+        // You can still keep it if you plan to fetch data later.
+        async function fetchStudentData() {
+            try {
+                const response = await fetch('https://your-api-endpoint');
+                const data = await response.json();
+
+                const tableBody = document.querySelector('#studentTable tbody');
+                tableBody.innerHTML = '';
+
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    const countryTd = document.createElement('td');
+                    const countTd = document.createElement('td');
+
+                    countryTd.textContent = row.Country;
+                    countTd.textContent = row.StudentCount;
+
+                    tr.appendChild(countryTd);
+                    tr.appendChild(countTd);
+                    tableBody.appendChild(tr);
+                });
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Uncomment this if using the fetch function later
+        // fetchStudentData();
+    </script>
+</body>
+</html>
